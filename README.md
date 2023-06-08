@@ -1,4 +1,4 @@
-# Todo App with State Mangement
+# To-Do App with State Mangement
 
 Implement a basic Todo App with the state management pattern.
 
