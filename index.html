@@ -11,7 +11,35 @@
 </head>
 
 <body>
-    <h1>Todo App</h1>
+    <div class="container">
+        <div class="todoApp">
+            <h1>Todo App <img src="img/icon.png" alt="icon-list"></h1>
+
+            <div>
+                <input type="radio" name="filter" id="filterAll" checked>
+                <label for="filterAll">All</label>
+
+                <input type="radio" name="filter" id="filterOpen">
+                <label for="filterOpen">Open</label>
+
+                <input type="radio" name="filter" id="filterDone">
+                <label for="filterDone">Done</label>
+            </div>
+
+            <button id="removeDoneBtn">Remove Done Todos</button>
+
+            <input type="text" id="todoInput" placeholder="What`s up?">
+
+            <button id="addTodoBtn">Add Todo</button>
+
+            <div id="todoList"></div>
+
+            <script src="script.js"></script>
+        </div>
+
+    </div>
+
+
 
 
     <script src="script.js"></script>

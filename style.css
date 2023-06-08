@@ -1,0 +1,47 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    font-family: "Roboto", "sans-serif";
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100%;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #153677, #4e0854);
+    padding: 10px;
+}
+
+.todoApp {
+    width: 100%;
+    max-width: 550px;
+    background: rgba(244, 217, 242, 0.785);
+    margin: 100px auto 20px;
+    padding: 40px 30px 70px;
+    border: 2px solid rgba(244, 217, 242);
+    border-radius: 20px;
+    box-shadow: 1px 1px 20px 10px rgba(255, 170, 251, 0.479);
+}
+
+.todoApp h1 {
+    color: #b117c0;
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.todoApp h1 img {
+    width: 50px;
+    height: auto;
+    margin-left: 10px;
+}
