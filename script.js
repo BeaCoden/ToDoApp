@@ -12,9 +12,11 @@ const removeDoneBtn = document.getElementById("removeDoneBtn");
 // Anfangszustand in todos & leeren Array speichern
 let todos = [];
 
-// todos aus dem lokalen Speicher laden  & als Array speichern (wenn vorhanden)
+//setItem speichert todos im localStorage als String (JSON.stringify) ab
+localStorage.setItem("todos", JSON.stringify(todos));
+
+// getItem liest todos aus dem localStorage aus & speichert sie als Array (JSON.parse) in todos
 if (localStorage.getItem("todos")) {
-  // JSON.parse wandelt String in Array um (wenn vorhanden) getItem auslesen & in todos speichern
   todos = JSON.parse(localStorage.getItem("todos"));
 }
 
@@ -41,8 +43,7 @@ function getSelectedFilter() {
   }
 }
 
-// todos im localStorage Stringify setItem speichern
-// todos aus dem localStorage laden & als Array speichern (wenn vorhanden) paseItem / getItem auslesen & in todos speichern
+// prüfen gegen null, undefined, leeren String
 // Funktion für rendern der todos
 // funktion für removeDoneBtn (alle erledigten todos löschen)
 // Funktion für hinzufügen der user todo Eingabe
