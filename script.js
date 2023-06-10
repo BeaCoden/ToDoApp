@@ -160,7 +160,7 @@ addTodoBtn.addEventListener("click", (glow) => {
   setTimeout(() => {
     // setTimeout Funktion für den Glow-Effekt
     container.classList.remove("glow"); // Glow-Klasse entfernen (CSS)
-  }, 1000); // Glow-Effekt nach 1 Sekunde entfernen
+  }, 200); // glow-Effekt nach 500ms entfernen
 });
 
 // Button-Styling anwenden

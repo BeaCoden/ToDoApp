@@ -50,6 +50,11 @@ body {
     color: rgb(217, 135, 213);
 }
 
+.container.glow {
+    box-shadow: 20px 20px 20px 20px rgba(226, 10, 10, 0.5);
+}
+
+
 .radioBtn {
     cursor: pointer;
     display: flex;
