@@ -8,6 +8,10 @@ As for Responsive Design, I can only say one thing: it's on my to-do list. 😅
 
 I appreciate your feedback on my code and I welcome any suggestions for improvement. 🙏
 
+You will soon find a link to my Miro board with direct access to my entity relationship model here as a link.
+
 You can find a more detailed task description by visiting https://github.com/BeaCoden/ToDoApp/blob/main/Task-Description.md
 
 ### Feel free to check out the current result of my code at https://beacoden.github.io/ToDoApp/.
+
+
