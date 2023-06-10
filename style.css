@@ -51,7 +51,7 @@ body {
 }
 
 .container.glow {
-    box-shadow: 20px 20px 20px 20px rgba(226, 10, 10, 0.5);
+    box-shadow: 1px 1px 20px 20px rgba(255, 170, 251, 0.479);
 }
 
 
