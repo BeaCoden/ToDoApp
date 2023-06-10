@@ -53,14 +53,13 @@ function renderTodos() {
   for (let i = 0; i < todos.length; i++) {
     // todos durchlaufen
     const todo = todos[i];
-
     if (
       selectedFilter === "all" ||
       (selectedFilter === "open" && !todo.done) ||
       (selectedFilter === "done" && todo.done)
     ) {
       const newLi = document.createElement("li"); // li Element erstellen
-
+      newLi.style.listStyleType = "none"; // Punkte entfernen
       const newCheckbox = document.createElement("input"); // Checkbox erstellen (input)
       newCheckbox.type = "checkbox"; // Checkbox an li Element anhängen
       newCheckbox.checked = todo.done; // Checkbox checked = true/false (je nachdem ob todo erledigt ist)
@@ -76,10 +75,11 @@ function renderTodos() {
       newCheckbox.style.height = "20px";
 
       newLi.appendChild(newCheckbox); // Checkbox an li Element anhängen
-
       const todoText = document.createElement("span"); // span Element für Todo-Text erstellen
       todoText.textContent = todo.description; // Todo-Text setzen
       if (todo.done) {
+        todoText.style.textDecoration = "line-through"; // Text durchstreichen, wenn todo erledigt ist
+        todoText.style.color = "grey"; // Textfarbe grau, wenn todo erledigt ist
       }
       newLi.appendChild(todoText); // Todo-Text an li Element anhängen
 
@@ -107,6 +107,29 @@ function removeDoneTodos() {
   saveTodos(); // todos im Local Storage speichern
   renderTodos(); // todos rendern
 }
+
+// Funktion zum Hinzufügen des Button-Stylings
+function styleButtons(button) {
+  (button.style = "background-color: rgb(237, 146, 232)"),
+    "color: white",
+    "border: none",
+    "padding: 10px 20px",
+    "border-radius: 5px",
+    "cursor: pointer",
+    "box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2)";
+
+  button.addEventListener("mouseover", () => {
+    button.style.backgroundColor = "rgb(106, 28, 195)";
+  });
+
+  button.addEventListener("mouseout", () => {
+    button.style.backgroundColor = "rgb(237, 146, 232)";
+  });
+}
+
+// Button-Styling anwenden
+styleButtons(addTodoBtn);
+styleButtons(removeDoneBtn);
 
 // Event-Listener hinzufügen
 addTodoBtn.addEventListener("click", addTodo);
