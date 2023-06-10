@@ -3,67 +3,88 @@
 // HTML Elemente auslesen
 const todoInput = document.getElementById("todoInput");
 const addTodoBtn = document.getElementById("addTodoBtn");
-const todoList = document.getElementById("todoList");
+const todoList = document.querySelector(".todoList"); // Klasse "todoList" mit querySelector Methode
 const filterAll = document.getElementById("filterAll");
 const filterOpen = document.getElementById("filterOpen");
 const filterDone = document.getElementById("filterDone");
 const removeDoneBtn = document.getElementById("removeDoneBtn");
 
 // Anfangszustand in Variable todos speichern (Array)
-// kann eine Liste aller USER angelegten todos sein oder nur ein todo (string) sein
 let todos = [];
 
 // JSON
-// setItem speichert todos im localStorage als String (JSON.stringify) ab
-localStorage.setItem("todos", JSON.stringify(todos));
-
-// getItem liest todos aus dem localStorage aus & speichert sie als Array (JSON.parse) in todos
-if (localStorage.getItem("todos")) {
-  todos = JSON.parse(localStorage.getItem("todos"));
+/// Funktion zum Speichern der Todos im Local Storage
+function saveTodos() {
+  localStorage.setItem("todos", JSON.stringify(todos));
 }
 
-// prüfen gegen null, undefined, leeren String
+/// Funktion zum Laden der Todos aus dem Local Storage
+function loadTodos() {
+  if (localStorage.getItem("todos")) {
+    todos = JSON.parse(localStorage.getItem("todos"));
+  }
+}
 
-// Event-Listener hinzufügen
-/// FUNKTIONEN IM INNERHALB LISTENER FEHLEN NOCH
-addTodoBtn.addEventListener("click", addTodo);
-filterAll.addEventListener("click");
-filterOpen.addEventListener("click");
-filterDone.addEventListener("click");
-removeDoneBtn.addEventListener("click", removeDoneTodos);
+// Funktion zum Hinzufügen eines neuen Todos
+function addTodo() {
+  // todoInput auslesen (value) & mit trim-Methode USER Eingabe bereinigen & Leerzeichen entfernen
+  const newTodo = {
+    description: todoInput.value.trim(),
+    done: false,
+  };
+
+  // prüfen gegen null, undefined und oder leeren String
+  if (newTodo.description !== "") {
+    todos.push(newTodo); // neues todo in todos Array hinzufügen
+    saveTodos(); // todos im Local Storage speichern
+    renderTodos(); // todos rendern
+    todoInput.value = ""; // todoInput leeren
+  }
+}
 
 // StateManagement
 /// Funktion für rendern der todos in HTML (ul) Liste (todoList)
 function renderTodos() {
-  // todoList Element aus HTML auslesen
-  const list = document.querySelector("#todoList");
+  const list = document.querySelector(".todoList"); // todoList Element aus HTML auslesen
+  list.innerHTML = ""; // todoList leeren
 
-  // todoList leeren
-  todoList.innerHTML = "";
+  const selectedFilter = getSelectedFilter();
 
-  // todos durchlaufen
   for (let i = 0; i < todos.length; i++) {
-    // li Element erstellen
-    const newLi = document.createElement("li");
-    // li Element mit todo Text befüllen
-    newLi.innerText = todos[i];
+    // todos durchlaufen
+    const todo = todos[i];
 
-    // Checkbox erstellen (input)
-    const newCheckbox = document.createElement("input");
-    // Checkbox an li Element anhängen
-    newCheckbox.type = "checkbox";
-    // Checkbox checked = true/false (je nachdem ob todo erledigt ist) setzen
-    newCheckbox.checked = todos[i].done;
-    // Checkbox Event-Listener hinzufügen
-    newLi.appendChild(newCheckbox);
+    if (
+      selectedFilter === "all" ||
+      (selectedFilter === "open" && !todo.done) ||
+      (selectedFilter === "done" && todo.done)
+    ) {
+      const newLi = document.createElement("li"); // li Element erstellen
 
-    // todo description erstellen
-    const todoText = document.createTextNode(todo.decription);
-    // todo description an li Element anhängen
-    newLi.append(todoText);
+      const newCheckbox = document.createElement("input"); // Checkbox erstellen (input)
+      newCheckbox.type = "checkbox"; // Checkbox an li Element anhängen
+      newCheckbox.checked = todo.done; // Checkbox checked = true/false (je nachdem ob todo erledigt ist)
+      newCheckbox.addEventListener("change", () => {
+        todo.done = newCheckbox.checked;
+        saveTodos();
+        renderTodos();
+      });
 
-    // li Element an todoList anhängen
-    list.appendChild(newLi);
+      // Styling der Checkbox über JavaScript festlegen
+      newCheckbox.style.marginRight = "10px";
+      newCheckbox.style.width = "20px";
+      newCheckbox.style.height = "20px";
+
+      newLi.appendChild(newCheckbox); // Checkbox an li Element anhängen
+
+      const todoText = document.createElement("span"); // span Element für Todo-Text erstellen
+      todoText.textContent = todo.description; // Todo-Text setzen
+      if (todo.done) {
+      }
+      newLi.appendChild(todoText); // Todo-Text an li Element anhängen
+
+      list.appendChild(newLi); // li Element an todoList anhängen
+    }
   }
 }
 
@@ -77,10 +98,23 @@ function getSelectedFilter() {
   }
   if (filterAll.checked) {
     return "all";
-  } else {
-    return "all";
   }
 }
 
-// prüfen gegen null, undefined, leeren String
-// funktion für removeDoneBtn (alle erledigten todos löschen)
+// Funktion für removeDoneBtn - Entfernen erledigte Todos
+function removeDoneTodos() {
+  todos = todos.filter((todo) => !todo.done); // todos filtern (alle todos die nicht erledigt sind)
+  saveTodos(); // todos im Local Storage speichern
+  renderTodos(); // todos rendern
+}
+
+// Event-Listener hinzufügen
+addTodoBtn.addEventListener("click", addTodo);
+filterAll.addEventListener("click", renderTodos);
+filterOpen.addEventListener("click", renderTodos);
+filterDone.addEventListener("click", renderTodos);
+removeDoneBtn.addEventListener("click", removeDoneTodos);
+
+// Todos aus Local Storage laden & rendern
+loadTodos();
+renderTodos();

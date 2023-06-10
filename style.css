@@ -15,7 +15,7 @@ body {
 }
 
 body {
-    background-color: #af9c9c;
+
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -26,11 +26,66 @@ body {
     line-height: 1.25;
 }
 
+
+
 .radioBtn {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 20px;
+
+}
+
+.inputAddBtn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-left: 20px;
+    background: rgb(237, 239, 237);
+    border-radius: 30px;
+}
+
+#todoInput {
+    flex: 1;
+
+    height: 25px;
+    padding: 10px;
+}
+
+#addTodoBtn {
+    cursor: pointer;
+
+}
+
+.todoList {
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: flex-start;
     width: 100%;
-    margin-bottom: 20px;
+}
+
+li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    font-size: 1.25rem;
+    color: rgb(224, 183, 198);
+}
+
+#removeDoneBtn {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    float: right;
+    width: 35%;
+    cursor: pointer;
+
 }
