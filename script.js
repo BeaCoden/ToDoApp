@@ -29,8 +29,14 @@ function loadTodos() {
 function addTodo() {
   // todoInput auslesen (value) & mit trim-Methode USER Eingabe bereinigen & Leerzeichen entfernen
   const newTodo = {
-    description: todoInput.value.trim(),
-    done: false,
+    id: +new Date(), // aktuelle Zeit als ID
+    description: todoInput.value
+      .trim() // USER Eingabe bereinigen & Leerzeichen entfernen,
+      .replace(/ä/g, "ä;") // Umlaute korrekt darstellen
+      .replace(/ö/g, "ö")
+      .replace(/ü/g, "ü;")
+      .replace(/ß/g, "ss;"), // Sonderzeichen korrekt darstellen
+    done: false, // done = false (Todo ist nicht erledigt)
   };
 
   // prüfen gegen null, undefined und oder leeren String
@@ -48,25 +54,33 @@ function renderTodos() {
   const list = document.querySelector(".todoList"); // todoList Element aus HTML auslesen
   list.innerHTML = ""; // todoList leeren
 
+  // Konstante für Filter auswerten
   const selectedFilter = getSelectedFilter();
 
+  // todos durchlaufen
   for (let i = 0; i < todos.length; i++) {
     // todos durchlaufen
-    const todo = todos[i];
+    const todo = todos[i]; // aktuelles todo aus todos Array auslesen
+
+    // Filter auswerten
     if (
       selectedFilter === "all" ||
       (selectedFilter === "open" && !todo.done) ||
       (selectedFilter === "done" && todo.done)
     ) {
       const newLi = document.createElement("li"); // li Element erstellen
-      newLi.style.listStyleType = "none"; // Punkte entfernen
       const newCheckbox = document.createElement("input"); // Checkbox erstellen (input)
+
       newCheckbox.type = "checkbox"; // Checkbox an li Element anhängen
       newCheckbox.checked = todo.done; // Checkbox checked = true/false (je nachdem ob todo erledigt ist)
+
+      newLi.style.listStyleType = "none"; // Punkte entfernen
+
+      // Event-Listener für Checkbox hinzufügen
       newCheckbox.addEventListener("change", () => {
         todo.done = newCheckbox.checked;
-        saveTodos();
-        renderTodos();
+        saveTodos(); // todos im Local Storage speichern
+        renderTodos(); // todos rendern
       });
 
       // Styling der Checkbox über JavaScript festlegen
@@ -74,16 +88,25 @@ function renderTodos() {
       newCheckbox.style.width = "20px";
       newCheckbox.style.height = "20px";
 
-      newLi.appendChild(newCheckbox); // Checkbox an li Element anhängen
+      // Checkbox an li Element anhängen
+      newLi.appendChild(newCheckbox);
+
+      // Event-Listener für li Element hinzufügen
       const todoText = document.createElement("span"); // span Element für Todo-Text erstellen
-      todoText.textContent = todo.description; // Todo-Text setzen
+
+      // Todo-Text setzen
+      todoText.textContent = todo.description;
+
+      // Styling des Todo-Textes über JavaScript festlegen
       if (todo.done) {
         todoText.style.textDecoration = "line-through"; // Text durchstreichen, wenn todo erledigt ist
         todoText.style.color = "grey"; // Textfarbe grau, wenn todo erledigt ist
       }
-      newLi.appendChild(todoText); // Todo-Text an li Element anhängen
 
-      list.appendChild(newLi); // li Element an todoList anhängen
+      // Todo-Text an li Element anhängen
+      newLi.appendChild(todoText);
+      // li Element an todoList anhängen
+      list.appendChild(newLi);
     }
   }
 }
@@ -126,6 +149,19 @@ function styleButtons(button) {
     button.style.backgroundColor = "rgb(237, 146, 232)";
   });
 }
+
+// Glow-Effekt für den Conatiner Klick auf Add Button
+addTodoBtn.addEventListener("click", (glow) => {
+  // Event-Listener für den Add Button
+
+  const container = document.querySelector(".container"); // Container aus HTML auslesen
+  container.classList.add("glow"); // Glow-Klasse hinzufügen (CSS)
+
+  setTimeout(() => {
+    // setTimeout Funktion für den Glow-Effekt
+    container.classList.remove("glow"); // Glow-Klasse entfernen (CSS)
+  }, 1000); // Glow-Effekt nach 1 Sekunde entfernen
+});
 
 // Button-Styling anwenden
 styleButtons(addTodoBtn);

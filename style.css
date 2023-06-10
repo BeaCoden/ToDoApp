@@ -15,7 +15,9 @@ body {
 }
 
 body {
-
+    background: linear-gradient(217deg, rgba(68, 0, 255, 0.605), rgba(41, 17, 89, 0.359) 70.71%),
+        linear-gradient(127deg, rgb(0, 0, 0), rgb(160, 153, 255) 70.71%),
+        linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(75, 113, 237, 0) 70.71%);
     display: flex;
     flex-direction: column;
     justify-content: left;
@@ -26,7 +28,27 @@ body {
     line-height: 1.25;
 }
 
+.container {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(38, 7, 152, 0.179);
+    margin: 100px auto 20px;
+    padding: 40px 45px 60px;
+    border: 2px solid rgb(235, 239, 245);
+    border-radius: 20px;
+    box-shadow: 1px 1px 20px 10px rgba(255, 170, 251, 0.479);
+}
 
+.container h1 {
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    font-size: 2.5rem;
+    color: rgb(217, 135, 213);
+}
 
 .radioBtn {
     cursor: pointer;
@@ -36,7 +58,13 @@ body {
     align-items: flex-start;
     width: 100%;
     margin-bottom: 20px;
-
+    border: none;
+    outline: none;
+    background: rgb(237, 146, 232);
+    padding: 16px 50px;
+    color: rgb(255, 255, 255);
+    font-size: 1.25rem;
+    border-radius: 25px;
 }
 
 .inputAddBtn {
@@ -51,14 +79,22 @@ body {
 
 #todoInput {
     flex: 1;
-
+    border: none;
+    outline: none;
+    background: transparent;
     height: 25px;
     padding: 10px;
 }
 
 #addTodoBtn {
     cursor: pointer;
-
+    border: none;
+    outline: none;
+    background: rgb(237, 146, 232);
+    padding: 16px 50px;
+    color: rgb(255, 255, 255);
+    font-size: 1.25rem;
+    border-radius: 25px;
 }
 
 .todoList {
@@ -87,5 +123,12 @@ li {
     float: right;
     width: 35%;
     cursor: pointer;
-
+    border: none;
+    outline: none;
+    background: rgb(237, 146, 232);
+    /* margin-bottom: 20px; */
+    padding: 16px 50px;
+    color: rgb(255, 255, 255);
+    font-size: 1.25rem;
+    border-radius: 25px;
 }
