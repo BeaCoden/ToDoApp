@@ -19,12 +19,12 @@ body {
     background: linear-gradient(217deg, rgba(68, 0, 255, 0.605), rgba(41, 17, 89, 0.359) 70.71%),
         linear-gradient(127deg, rgb(0, 0, 0), rgb(160, 153, 255) 70.71%),
         linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(75, 113, 237, 0) 70.71%);
+    background-repeat: no-repeat;
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: flex-start;
     min-height: 100vh;
-    padding-left: 50px;
     font-size: 1.5rem;
     line-height: 1.25;
 }
@@ -32,8 +32,9 @@ body {
 /*=== CONTAINER === */
 .container {
     width: 100%;
-    max-width: 500px;
+    max-width: 468px;
     background: rgba(38, 7, 152, 0.179);
+    background-repeat: no-repeat;
     margin: 100px auto 20px;
     padding: 40px 45px 60px;
     border: 2px solid rgb(235, 239, 245);
@@ -142,3 +143,20 @@ li {
     font-size: 1.25rem;
     border-radius: 25px;
 }
+
+/*=== MEDIA QUERIES ResDes ===*/
+/* @media (max-width: 466px) {
+    .container {
+        font-size: .75rem;
+    }
+
+    .container h1 {}
+
+    .radioBtn {}
+
+    #addTodoBtn {}
+
+    li {}
+
+    #removeDoneBtn {}
+} */
