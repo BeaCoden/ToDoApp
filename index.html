@@ -11,11 +11,12 @@
 </head>
 
 <body>
-    <!-- CONTAINER  -->
-    <div class="container">
+
+    <!-- BOX  -->
+    <div class="box">
         <h1>Todo App</h1>
 
-        <!-- FILTER BUTTON -->
+        <!-- FILTER -->
         <div class="radioBtn">
             <!-- All - checked steht für default radio Button Markierung -->
             <label for="filterAll">All <input type="radio" name="filter" id="filterAll" checked></label>
@@ -23,10 +24,12 @@
             <label for="filterDone">Done <input type="radio" name="filter" id="filterDone"></label>
         </div>
 
-        <!-- USER INPUT FIELD & ADD BUTTON -->
+        <!-- USER INPUT FIELD; ADD & REMOVE BUTTON -->
         <div class="inputAddBtn">
             <input type="text" id="todoInput" placeholder="What's on today?">
             <button id="addTodoBtn">Add</button>
+            <!-- REMOVE BUTTON -->
+            <button id="removeDoneBtn">Remove</button>
         </div>
 
         <!-- USER TODO LIST -->
@@ -37,9 +40,6 @@
                 <li></li>
             </ul>
         </div>
-
-        <!-- REMOVE BUTTON -->
-        <button id="removeDoneBtn">Remove</button>
     </div>
 
     <!-- SCRIPT -->

@@ -150,16 +150,16 @@ function styleButtons(button) {
   });
 }
 
-// Glow-Effekt für den Conatiner Klick auf Add Button
+// Glow-Effekt für die Box bei Klick auf Add Button
 addTodoBtn.addEventListener("click", (glow) => {
   // Event-Listener für den Add Button
 
-  const container = document.querySelector(".container"); // Container aus HTML auslesen
-  container.classList.add("glow"); // Glow-Klasse hinzufügen (CSS)
+  const box = document.querySelector(".box"); // Container aus HTML auslesen
+  box.classList.add("glow"); // Glow-Klasse hinzufügen (CSS)
 
   setTimeout(() => {
     // setTimeout Funktion für den Glow-Effekt
-    container.classList.remove("glow"); // Glow-Klasse entfernen (CSS)
+    box.classList.remove("glow"); // Glow-Klasse entfernen (CSS)
   }, 200); // glow-Effekt nach 500ms entfernen
 });
 

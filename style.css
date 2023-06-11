@@ -1,4 +1,4 @@
-/*=== GLOBAL === */
+/* === GLOBAL === */
 *,
 *::before,
 *::after {
@@ -9,101 +9,103 @@ html {
     font-family: "Roboto", "sans-serif";
 }
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-}
-
 body {
     background: linear-gradient(217deg, rgba(68, 0, 255, 0.605), rgba(41, 17, 89, 0.359) 70.71%),
         linear-gradient(127deg, rgb(0, 0, 0), rgb(160, 153, 255) 70.71%),
         linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(75, 113, 237, 0) 70.71%);
     background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 15px;
+}
+
+/* === BOX === */
+.box.glow {
+    box-shadow: 1px 1px 20px 20px rgba(255, 170, 251, 0.479);
+}
+
+.box {
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: flex-start;
-    min-height: 100vh;
-    font-size: 1.5rem;
-    line-height: 1.25;
-}
-
-/*=== CONTAINER === */
-.container {
-    width: 100%;
-    max-width: 468px;
-    background: rgba(38, 7, 152, 0.179);
-    background-repeat: no-repeat;
-    margin: 100px auto 20px;
+    background: rgba(198, 192, 222, 0.062);
     padding: 40px 45px 60px;
     border: 2px solid rgb(235, 239, 245);
     border-radius: 20px;
     box-shadow: 1px 1px 20px 10px rgba(255, 170, 251, 0.479);
 }
 
-.container h1 {
+/* === HEADER === */
+h1 {
     color: rgb(255, 255, 255);
-    display: flex;
-    flex-direction: column;
-    justify-content: left;
-    align-items: flex-start;
-    margin-bottom: 30px;
-    font-size: 2.5rem;
+    margin: 10px 0px 15px;
+    font-size: 2rem;
     color: rgb(217, 135, 213);
 }
 
-.container.glow {
-    box-shadow: 1px 1px 20px 20px rgba(255, 170, 251, 0.479);
-}
-
-/*=== FILTER BUTTON === */
+/* === FILTER === */
 .radioBtn {
     cursor: pointer;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
+    justify-content: space-evenly;
+    align-items: center;
     width: 100%;
     margin-bottom: 20px;
     border: none;
     outline: none;
     background: rgb(237, 146, 232);
-    padding: 16px 50px;
+    padding: 10px 10px;
     color: rgb(255, 255, 255);
-    font-size: 1.25rem;
-    border-radius: 25px;
+    font-size: 1rem;
+    border-radius: 15px;
 }
 
-/*=== USER INPUT FIELD & ADD BUTTON === */
+/* === INPUT === */
 .inputAddBtn {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 25px;
-    padding-left: 20px;
-    background: rgb(237, 239, 237);
-    border-radius: 30px;
+    align-items: baseline;
+    width: 100%;
+    margin-bottom: 20px;
 }
 
 #todoInput {
-    flex: 1;
-    border: none;
-    outline: none;
-    background: transparent;
-    height: 25px;
-    padding: 10px;
+    border: 5px solid rgb(237, 146, 232);
+    border-radius: 15px;
+    background: rgb(255, 255, 255);
+    height: 40px;
+    width: 100%;
+    font-size: 1rem;
+    padding-left: 20px;
 }
 
+/* === ADD BTN === */
 #addTodoBtn {
     cursor: pointer;
     border: none;
     outline: none;
     background: rgb(237, 146, 232);
-    padding: 16px 50px;
+    padding: 10px 20px;
+    margin: 0px 10px 0px;
     color: rgb(255, 255, 255);
-    font-size: 1.25rem;
-    border-radius: 25px;
+    font-size: 1rem;
+    border-radius: 15px;
+}
+
+/* === REMOVE BTN === */
+#removeDoneBtn {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: rgb(237, 146, 232);
+    padding: 10px 20px;
+    color: rgb(255, 255, 255);
+    font-size: 1rem;
+    border-radius: 15px;
 }
 
 /*=== TODO LIST === */
@@ -120,43 +122,10 @@ li {
     justify-content: space-between;
     align-items: center;
     max-width: 100%;
-    margin-bottom: 10px;
-    margin-top: 10px;
-    font-size: 1.25rem;
-    color: rgb(224, 183, 198);
-}
-
-/*=== REMOVE BUTTON === */
-#removeDoneBtn {
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    float: right;
-    width: 35%;
-    cursor: pointer;
-    border: none;
-    outline: none;
-    background: rgb(237, 146, 232);
-    /* margin-bottom: 20px; */
-    padding: 16px 50px;
+    line-height: 2;
+    font-size: 1rem;
     color: rgb(255, 255, 255);
-    font-size: 1.25rem;
-    border-radius: 25px;
 }
 
-/*=== MEDIA QUERIES ResDes ===*/
-/* @media (max-width: 466px) {
-    .container {
-        font-size: .75rem;
-    }
-
-    .container h1 {}
-
-    .radioBtn {}
-
-    #addTodoBtn {}
-
-    li {}
-
-    #removeDoneBtn {}
-} */
+/*=== RESPONSIVE DESIGN ===*/
+/* MEDIA QUERIES */
