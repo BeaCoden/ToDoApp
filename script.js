@@ -1,12 +1,12 @@
 "use strict";
 
 // HTML Elemente auslesen
-const todoInput = document.getElementById("todoInput");
-const addTodoBtn = document.getElementById("addTodoBtn");
-const todoList = document.querySelector(".todoList"); // Klasse "todoList" mit querySelector Methode
 const filterAll = document.getElementById("filterAll");
 const filterOpen = document.getElementById("filterOpen");
 const filterDone = document.getElementById("filterDone");
+const todoInput = document.getElementById("todoInput");
+const addTodoBtn = document.getElementById("addTodoBtn");
+const todoList = document.querySelector(".todoList"); // Klasse "todoList" mit querySelector Methode
 const removeDoneBtn = document.getElementById("removeDoneBtn");
 
 // Anfangszustand in Variable todos speichern (Array)
