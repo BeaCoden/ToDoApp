@@ -6,42 +6,54 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="autor" content="Bea Pitzschke">
+    <link rel="stylesheet" href="https://unpkg.com/normalize.css@8.0.1/normalize.css" />
     <link rel="stylesheet" href="style.css">
     <title>To-Do App</title>
 </head>
 
+
 <body>
-
+    <!-- MOBIL-VIEW-AREA -->
     <!-- BOX  -->
-    <div class="box">
-        <h1>Todo App</h1>
+    <!-- FILTER -->
+    <!-- USER INPUT FIELD; ADD & REMOVE BUTTON -->
+    <!-- REMOVE BUTTON -->
+    <!-- USER TODO LIST -->
+    <!-- CHECKBOXEN -->
 
-        <!-- FILTER -->
-        <div class="radioBtn">
-            <!-- All - checked steht für default radio Button Markierung -->
-            <label for="filterAll">All <input type="radio" name="filter" id="filterAll" checked></label>
-            <label for="filterOpen">Open <input type="radio" name="filter" id="filterOpen"></label>
-            <label for="filterDone">Done <input type="radio" name="filter" id="filterDone"></label>
+
+    <!-- DESKTOP-VIEW-AREA-->
+    <!-- BOX  -->
+    <section id="desktopView">
+        <div class="box">
+            <h1>Todo App</h1>
+
+            <!-- FILTER -->
+            <div class="radioBtn">
+                <!-- All - checked steht für default radio Button Markierung -->
+                <label for="filterAll">All <input type="radio" name="filter" id="filterAll" checked></label>
+                <label for="filterOpen">Open <input type="radio" name="filter" id="filterOpen"></label>
+                <label for="filterDone">Done <input type="radio" name="filter" id="filterDone"></label>
+            </div>
+
+            <!-- USER INPUT FIELD; ADD & REMOVE BUTTON -->
+            <div class="inputAddBtn">
+                <input type="text" id="todoInput" placeholder="What's on today?">
+                <button id="addTodoBtn">Add</button>
+                <!-- REMOVE BUTTON -->
+                <button id="removeDoneBtn">Remove</button>
+            </div>
+
+            <!-- USER TODO LIST -->
+            <div class="todoList">
+                <ul>
+                    <!-- CHECKBOXEN -->
+                    <input type="checkbox" name="checkbox" class="customCheckbox">
+                    <li></li>
+                </ul>
+            </div>
         </div>
-
-        <!-- USER INPUT FIELD; ADD & REMOVE BUTTON -->
-        <div class="inputAddBtn">
-            <input type="text" id="todoInput" placeholder="What's on today?">
-            <button id="addTodoBtn">Add</button>
-            <!-- REMOVE BUTTON -->
-            <button id="removeDoneBtn">Remove</button>
-        </div>
-
-        <!-- USER TODO LIST -->
-        <div class="todoList">
-            <ul>
-                <!-- CHECKBOXEN -->
-                <input type="checkbox" name="checkbox" class="customCheckbox">
-                <li></li>
-            </ul>
-        </div>
-    </div>
-
+    </section>
     <!-- SCRIPT -->
     <script src="script.js"></script>
 </body>
