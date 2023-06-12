@@ -64,9 +64,9 @@ function renderTodos() {
 
     // Filter auswerten
     if (
-      selectedFilter === "all" ||
-      (selectedFilter === "open" && !todo.done) ||
-      (selectedFilter === "done" && todo.done)
+      selectedFilter === "all" || // wenn Filter All
+      (selectedFilter === "open" && !todo.done) || // wenn Filter Open & nicht erledigt
+      (selectedFilter === "done" && todo.done) // wenn Filter Done & erledigt
     ) {
       const newLi = document.createElement("li"); // li Element erstellen
       const newCheckbox = document.createElement("input"); // Checkbox erstellen (input)
