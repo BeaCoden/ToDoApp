@@ -1,18 +1,26 @@
 /* === GLOBAL === */
+:root {
+    --box-sizing: border-box;
+    --font-family: "Roboto", "sans-serif";
+    --primary-color: rgb(237, 146, 232);
+    --secondary-color: rgb(255, 255, 255);
+    --background-gradient: linear-gradient(217deg, rgba(68, 0, 255, 0.605), rgba(41, 17, 89, 0.359) 70.71%),
+        linear-gradient(127deg, rgb(0, 0, 0), rgb(160, 153, 255) 70.71%),
+        linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(75, 113, 237, 0) 70.71%);
+}
+
 *,
 *::before,
 *::after {
-    box-sizing: border-box;
+    box-sizing: var(--box-sizing);
 }
 
 html {
-    font-family: "Roboto", "sans-serif";
+    font-family: var(--font-family);
 }
 
 body {
-    background: linear-gradient(217deg, rgba(68, 0, 255, 0.605), rgba(41, 17, 89, 0.359) 70.71%),
-        linear-gradient(127deg, rgb(0, 0, 0), rgb(160, 153, 255) 70.71%),
-        linear-gradient(336deg, rgba(0, 0, 255, .8), rgba(75, 113, 237, 0) 70.71%);
+    background: var(--background-gradient);
     background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
@@ -35,12 +43,12 @@ body {
     padding: 40px 45px 60px;
     border: 2px solid rgb(235, 239, 245);
     border-radius: 20px;
-    box-shadow: 1px 1px 20px 10px rgba(255, 170, 251, 0.479);
+    box-shadow: var(--box-shadow);
 }
 
 /* === HEADER === */
 h1 {
-    color: rgb(255, 255, 255);
+    color: var(--secondary-color);
     margin: 10px 0px 15px;
     font-size: 2rem;
     color: rgb(217, 135, 213);
@@ -57,9 +65,9 @@ h1 {
     margin-bottom: 20px;
     border: none;
     outline: none;
-    background: rgb(237, 146, 232);
+    background: var(--primary-color);
     padding: 10px 10px;
-    color: rgb(255, 255, 255);
+    color: var(--secondary-color);
     font-size: 1rem;
     border-radius: 15px;
 }
@@ -74,9 +82,9 @@ h1 {
 }
 
 #todoInput {
-    border: 5px solid rgb(237, 146, 232);
+    border: 5px solid var(--primary-color);
     border-radius: 15px;
-    background: rgb(255, 255, 255);
+    background: var(--secondary-color);
     height: 40px;
     width: 100%;
     font-size: 1rem;
@@ -88,10 +96,10 @@ h1 {
     cursor: pointer;
     border: none;
     outline: none;
-    background: rgb(237, 146, 232);
+    background: var(--primary-color);
     padding: 10px 20px;
     margin: 0px 10px 0px;
-    color: rgb(255, 255, 255);
+    color: var(--secondary-color);
     font-size: 1rem;
     border-radius: 15px;
 }
@@ -101,14 +109,14 @@ h1 {
     cursor: pointer;
     border: none;
     outline: none;
-    background: rgb(237, 146, 232);
+    background: var(--primary-color);
     padding: 10px 20px;
-    color: rgb(255, 255, 255);
+    color: var(--secondary-color);
     font-size: 1rem;
     border-radius: 15px;
 }
 
-/*=== TODO LIST === */
+/* === TODO LIST === */
 .todoList {
     display: flex;
     flex-direction: column;
@@ -124,8 +132,8 @@ li {
     max-width: 100%;
     line-height: 2;
     font-size: 1rem;
-    color: rgb(255, 255, 255);
+    color: var(--secondary-color);
 }
 
-/*=== RESPONSIVE DESIGN ===*/
+/* === RESPONSIVE DESIGN === */
 /* MEDIA QUERIES */
