@@ -48,7 +48,7 @@ function addTodo() {
     done: false, // done = false (Todo ist nicht erledigt)
   };
 
-  // prüfen gegen null, undefined und oder leeren String
+  // prüfen ob User Eingabe Text vorhanden ist oder  null, undefined und oder leeren String
   if (newTodo.description !== "") {
     todos.push(newTodo); // neues todo in todos Array hinzufügen
     saveTodos(); // todos im Local Storage speichern
