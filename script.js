@@ -1,6 +1,6 @@
 "use strict";
 
-// HTML Elemente auslesen
+// HTML Elemente im body auslesen
 const filterAll = document.getElementById("filterAll");
 const filterOpen = document.getElementById("filterOpen");
 const filterDone = document.getElementById("filterDone");
@@ -15,12 +15,21 @@ let todos = [];
 // JSON
 /// Funktion zum Speichern der Todos im Local Storage
 function saveTodos() {
+  // speichern
   localStorage.setItem("todos", JSON.stringify(todos));
+
+  // wenn todos weniger character als 2 = löschen
+  // if (todos.length <= 2) {
+  //   alert("min 2 characters");
+  //   localStorage.removeItem("todos");
+  // }
 }
 
 /// Funktion zum Laden der Todos aus dem Local Storage
 function loadTodos() {
+  // wenn todos eintrag haben dann verwenden
   if (localStorage.getItem("todos")) {
+    // laden
     todos = JSON.parse(localStorage.getItem("todos"));
   }
 }
@@ -44,71 +53,87 @@ function addTodo() {
     todos.push(newTodo); // neues todo in todos Array hinzufügen
     saveTodos(); // todos im Local Storage speichern
     renderTodos(); // todos rendern
-    todoInput.value = ""; // todoInput leeren
+    todoInput.value = ""; // todoInput Textfeld leeren
   }
 }
 
-// StateManagement
-/// Funktion für rendern der todos in HTML (ul) Liste (todoList)
+// STATEMANAGEMENT
 function renderTodos() {
-  const list = document.querySelector(".todoList"); // todoList Element aus HTML auslesen
+  /// Funktion zum rendern (= übertragen)
+  const list = document.querySelector(".todoList");
   list.innerHTML = ""; // todoList leeren
 
-  // Konstante für Filter auswerten
-  const selectedFilter = getSelectedFilter();
+  const selectedFilter = getSelectedFilter(); // Konstante für Filter auswerten
+  const filteredTodos = filterTodos(selectedFilter); // Konstante für FilteredTodos
 
-  // todos durchlaufen
-  for (let i = 0; i < todos.length; i++) {
-    // todos durchlaufen
-    const todo = todos[i]; // aktuelles todo aus todos Array auslesen
+  filteredTodos.forEach((todo) => {
+    const newLi = createListItem(todo); // Konstante für neues li Element
+    list.appendChild(newLi); // li Element an ul Element anhängen
+  });
+}
 
-    // Filter auswerten
+// HILFSFUNKTIONEN
+// Filterfunktion
+function filterTodos(filter) {
+  return todos.filter((todo) => {
     if (
-      selectedFilter === "all" || // wenn Filter All
-      (selectedFilter === "open" && !todo.done) || // wenn Filter Open & nicht erledigt
-      (selectedFilter === "done" && todo.done) // wenn Filter Done & erledigt
+      filter === "all" ||
+      (filter === "open" && !todo.done) ||
+      (filter === "done" && todo.done) // alle - offen - erledigt
     ) {
-      const newLi = document.createElement("li"); // li Element erstellen
-      const newCheckbox = document.createElement("input"); // Checkbox erstellen (input)
-
-      newCheckbox.type = "checkbox"; // Checkbox an li Element anhängen
-      newCheckbox.checked = todo.done; // Checkbox checked = true/false (je nachdem ob todo erledigt ist)
-
-      newLi.style.listStyleType = "none"; // Punkte entfernen
-
-      // Event-Listener für Checkbox hinzufügen
-      newCheckbox.addEventListener("change", () => {
-        todo.done = newCheckbox.checked;
-        saveTodos(); // todos im Local Storage speichern
-        renderTodos(); // todos rendern
-      });
-
-      // Styling der Checkbox über JavaScript festlegen
-      newCheckbox.style.marginRight = "10px";
-      newCheckbox.style.width = "20px";
-      newCheckbox.style.height = "20px";
-
-      // Checkbox an li Element anhängen
-      newLi.appendChild(newCheckbox);
-
-      // Event-Listener für li Element hinzufügen
-      const todoText = document.createElement("span"); // span Element für Todo-Text erstellen
-
-      // Todo-Text setzen
-      todoText.textContent = todo.description;
-
-      // Styling des Todo-Textes über JavaScript festlegen
-      if (todo.done) {
-        todoText.style.textDecoration = "line-through"; // Text durchstreichen, wenn todo erledigt ist
-        todoText.style.color = "grey"; // Textfarbe grau, wenn todo erledigt ist
-      }
-
-      // Todo-Text an li Element anhängen
-      newLi.appendChild(todoText);
-      // li Element an todoList anhängen
-      list.appendChild(newLi);
+      return true;
+    } else {
+      return false;
     }
+  });
+}
+
+// HILFSFUNKTIONEN
+// li in ul Funktion
+function createListItem(todo) {
+  const newLi = document.createElement("li");
+  const newCheckbox = createCheckbox(todo.done);
+  const todoText = createTodoText(todo); //
+
+  newLi.style.listStyleType = "none"; // keine Punkte als Listenvorzeichen
+
+  newCheckbox.addEventListener("change", () => {
+    todo.done = newCheckbox.checked; //
+    saveTodos(); // im local Storage speichen
+    renderTodos(); // auslesen
+  });
+
+  newLi.appendChild(newCheckbox); // checkbox zufügen
+  newLi.appendChild(todoText); // user Text zufügen
+
+  return newLi;
+}
+
+// HILFSFUNKTIONEN
+// Checkbox Funktion
+function createCheckbox(isChecked) {
+  const newCheckbox = document.createElement("input");
+  newCheckbox.type = "checkbox";
+  newCheckbox.checked = isChecked; // blauen Haken setzen
+  newCheckbox.style.marginRight = "10px";
+  newCheckbox.style.width = "20px";
+  newCheckbox.style.height = "20px";
+
+  return newCheckbox;
+}
+
+// HILFSFUNKTIONEN
+// User - Todo Text Funktion
+function createTodoText(todo) {
+  const todoText = document.createElement("span"); // span Element weil Textinhalt in span Element gehört
+  todoText.textContent = todo.description; // Todo-Text setzen
+
+  if (todo.done) {
+    todoText.style.textDecoration = "line-through";
+    todoText.style.color = "grey";
   }
+
+  return todoText;
 }
 
 // Funktion zum All, Open, Done Filter auswerten & Userwahl radio Button markieren
@@ -149,6 +174,13 @@ function styleButtons(button) {
     button.style.backgroundColor = "rgb(237, 146, 232)";
   });
 }
+
+//funktion für löschen einer leeren checkbox falls vorhanden und oder eines leeren todos
+// function deleteList() {
+//   const deleteTodo = todoList;
+
+//   if ()
+// }
 
 // Glow-Effekt für die Box bei Klick auf Add Button
 addTodoBtn.addEventListener("click", (glow) => {
