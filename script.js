@@ -67,6 +67,7 @@ function renderTodos() {
   const filteredTodos = filterTodos(selectedFilter); // Konstante für FilteredTodos
 
   filteredTodos.forEach((todo) => {
+    // forEach Schleife für jedes todo Element in filteredTodos Array
     const newLi = createListItem(todo); // Konstante für neues li Element
     list.appendChild(newLi); // li Element an ul Element anhängen
   });
@@ -98,7 +99,7 @@ function createListItem(todo) {
   newLi.style.listStyleType = "none"; // keine Punkte als Listenvorzeichen
 
   newCheckbox.addEventListener("change", () => {
-    todo.done = newCheckbox.checked; //
+    todo.done = newCheckbox.checked;
     saveTodos(); // im local Storage speichen
     renderTodos(); // auslesen
   });
@@ -132,7 +133,6 @@ function createTodoText(todo) {
     todoText.style.textDecoration = "line-through";
     todoText.style.color = "grey";
   }
-
   return todoText;
 }
 
@@ -175,10 +175,9 @@ function styleButtons(button) {
   });
 }
 
-//funktion für löschen einer leeren checkbox falls vorhanden und oder eines leeren todos
+// funktion für löschen einer leeren checkbox falls vorhanden und oder eines leeren todos
 // function deleteList() {
 //   const deleteTodo = todoList;
-
 //   if ()
 // }
 
