@@ -17,12 +17,6 @@ let todos = [];
 function saveTodos() {
   // speichern
   localStorage.setItem("todos", JSON.stringify(todos));
-
-  // wenn todos weniger character als 2 = löschen
-  // if (todos.length <= 2) {
-  //   alert("min 2 characters");
-  //   localStorage.removeItem("todos");
-  // }
 }
 
 /// Funktion zum Laden der Todos aus dem Local Storage
@@ -32,45 +26,6 @@ function loadTodos() {
     // laden
     todos = JSON.parse(localStorage.getItem("todos"));
   }
-}
-
-// Funktion zum Hinzufügen eines neuen Todos
-function addTodo() {
-  // todoInput auslesen (value) & mit trim-Methode USER Eingabe bereinigen & Leerzeichen entfernen
-  const newTodo = {
-    id: +new Date(), // aktuelle Zeit als ID
-    description: todoInput.value
-      .trim() // USER Eingabe bereinigen & Leerzeichen entfernen,
-      .replace(/ä/g, "ä;") // Umlaute korrekt darstellen
-      .replace(/ö/g, "ö")
-      .replace(/ü/g, "ü;")
-      .replace(/ß/g, "ss;"), // Sonderzeichen korrekt darstellen
-    done: false, // done = false (Todo ist nicht erledigt)
-  };
-
-  // prüfen ob User Eingabe Text vorhanden ist oder  null, undefined und oder leeren String
-  if (newTodo.description !== "") {
-    todos.push(newTodo); // neues todo in todos Array hinzufügen
-    saveTodos(); // todos im Local Storage speichern
-    renderTodos(); // todos rendern
-    todoInput.value = ""; // todoInput Textfeld leeren
-  }
-}
-
-// STATEMANAGEMENT
-function renderTodos() {
-  /// Funktion zum rendern (= übertragen)
-  const list = document.querySelector(".todoList");
-  list.innerHTML = ""; // todoList leeren
-
-  const selectedFilter = getSelectedFilter(); // Konstante für Filter auswerten
-  const filteredTodos = filterTodos(selectedFilter); // Konstante für FilteredTodos
-
-  filteredTodos.forEach((todo) => {
-    // forEach Schleife für jedes todo Element in filteredTodos Array
-    const newLi = createListItem(todo); // Konstante für neues li Element
-    list.appendChild(newLi); // li Element an ul Element anhängen
-  });
 }
 
 // HILFSFUNKTIONEN
@@ -136,6 +91,54 @@ function createTodoText(todo) {
   return todoText;
 }
 
+// // HILFSFUNKTIONEN
+// // upperCase - lowerCase Funktion
+// function upperCaseFirstLetter(string) {
+//   return string.charAt(0).toUpperCase() + string.slice(1);
+// }
+// // upperCase - lowerCase Funktion aufrufen
+// upperCaseFirstLetter("string");
+
+// GENERELLE FUNKTIONEN
+// Funktion zum Hinzufügen eines neuen Todos
+function addTodo() {
+  // todoInput auslesen (value) & mit trim-Methode USER Eingabe bereinigen & Leerzeichen entfernen
+  const newTodo = {
+    id: +new Date(), // aktuelle Zeit als ID
+    description: todoInput.value
+      .trim() // USER Eingabe bereinigen & Leerzeichen entfernen,
+      .replace(/ä/g, "ä;") // Umlaute korrekt darstellen
+      .replace(/ö/g, "ö")
+      .replace(/ü/g, "ü;")
+      .replace(/ß/g, "ss;"), // Sonderzeichen korrekt darstellen
+    done: false, // done = false (Todo ist nicht erledigt)
+  };
+
+  // prüfen ob User Eingabe Text vorhanden ist oder  null, undefined und oder leeren String
+  if (newTodo.description !== "") {
+    todos.push(newTodo); // neues todo in todos Array hinzufügen
+    saveTodos(); // todos im Local Storage speichern
+    renderTodos(); // todos rendern
+    todoInput.value = ""; // todoInput Textfeld leeren
+  }
+}
+
+// STATEMANAGEMENT
+function renderTodos() {
+  /// Funktion zum rendern (= übertragen)
+  const list = document.querySelector(".todoList");
+  list.innerHTML = ""; // todoList leeren
+
+  const selectedFilter = getSelectedFilter(); // Konstante für Filter auswerten
+  const filteredTodos = filterTodos(selectedFilter); // Konstante für FilteredTodos
+
+  filteredTodos.forEach((todo) => {
+    // forEach Schleife für jedes todo Element in filteredTodos Array
+    const newLi = createListItem(todo); // Konstante für neues li Element
+    list.appendChild(newLi); // li Element an ul Element anhängen
+  });
+}
+
 // Funktion zum All, Open, Done Filter auswerten & Userwahl radio Button markieren
 function getSelectedFilter() {
   if (filterOpen.checked) {
@@ -174,12 +177,6 @@ function styleButtons(button) {
     button.style.backgroundColor = "rgb(237, 146, 232)";
   });
 }
-
-// funktion für löschen einer leeren checkbox falls vorhanden und oder eines leeren todos
-// function deleteList() {
-//   const deleteTodo = todoList;
-//   if ()
-// }
 
 // Glow-Effekt für die Box bei Klick auf Add Button
 addTodoBtn.addEventListener("click", (glow) => {
