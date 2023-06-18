@@ -103,7 +103,7 @@ h1 {
     color: var(--secondary-color);
     font-size: 1rem;
     border-radius: 15px;
-    width: 150px;
+    width: 50%;
 }
 
 /* === REMOVE BTN === */
@@ -116,7 +116,8 @@ h1 {
     color: var(--secondary-color);
     font-size: 1rem;
     border-radius: 15px;
-    width: 150px;
+    width: 50%;
+    margin-left: 10px;
 }
 
 /* === TODO LIST === */
